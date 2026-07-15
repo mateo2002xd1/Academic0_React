@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function CursoCard(props){
     return  (<div className="card" key={props.id}>
         <h3>
@@ -17,8 +19,18 @@ function CursoCard(props){
         <p>
             {props.desc}
         </p>
-
         
+        {props.mostrarBotonDescripcion && (
+            <Link to={`/cursos/${props.id}`}>
+                Ver detalle
+            </Link>
+        )}
+
+        {props.mostrarEditarCurso && (
+            <Link to={`/cursos/editar/${props.id}`}>
+                Editar curso
+            </Link>
+        )}
     </div>);
 }
 
