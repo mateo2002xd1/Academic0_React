@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import CursoCard from "../components/CursoCard";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import api from "../service/api";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 function Cursos(){
     const [curso, setCurso] = useState([]);
-    useEffect(() => {axios.get("http://localhost:8080/curso").then((res) => setCurso(res.data.content)).catch((e) => console.log(e.data))}, []);
-
+    const { rol } = useContext(AuthContext);
+    useEffect(() => {api.get("/curso").then((res) => setCurso(res.data.content)).catch((e) => console.log(e.data))}, []);
+    console.log(rol)
     return (
         <main className="contenido">
-            <Link to="/cursos/nuevo">Crear Curso</Link>
+            {rol == "ROLE_ADMIN" && <Link to="/cursos/nuevo">Crear Curso</Link>}
             <h1>
-                Home
+                Cursos
             </h1>
             <h2>Total de cursos: {curso.length}</h2>
 

@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../service/api";
 
 function CrearCursos(){
     const [nombre, setNombreCurso] = useState("");
@@ -16,7 +16,7 @@ function CrearCursos(){
             activo
         }
 
-        axios.post("http://localhost:8080/curso", curso).then(() => 
+        api.post("/curso", curso).then(() => 
                                                                     {
                                                                         console.log("Curso creado"); 
                                                                         setNombreCurso("");

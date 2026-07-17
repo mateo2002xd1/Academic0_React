@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CursoCard from "../components/CursoCard";
-import axios from "axios";
+import api from "../service/api";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
 
 function CursosBuscar(){
     const { cursoId } = useParams();
-    
     const [curso, setCurso] = useState(null);
-    useEffect(() => {axios.get(`http://localhost:8080/curso/${cursoId}`).then((res) => setCurso(res.data)).catch((e) => console.log(e.data))}, [cursoId]);
+    const { rol } = useContext(AuthContext);
+
+    useEffect(() => {api.get(`/curso/${cursoId}`).then((res) => setCurso(res.data)).catch((e) => console.log(e.data))}, [cursoId]);
     
     return (
         <main className="contenido">
@@ -23,7 +27,7 @@ function CursosBuscar(){
                     desc={curso.descripcion}
                     activo={curso.activo}
                     fechacreacion={curso.fechacreacion}
-                    mostrarEditarCurso={true}
+                    mostrarEditarCurso={rol == "ROLE_ADMIN" && true}
                 />
             )}
         </main>

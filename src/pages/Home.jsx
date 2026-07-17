@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import CursoCard from "../components/CursoCard";
-import axios from "axios";
 
 function Home(){
     return (

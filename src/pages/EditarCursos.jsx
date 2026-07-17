@@ -1,8 +1,9 @@
-import axios from "axios";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import api from "../service/api";
+
 function EditarCursos(){
     const { cursoId } = useParams();
     const [nombre, setNombreCurso] = useState("");
@@ -11,7 +12,7 @@ function EditarCursos(){
     const navegar = useNavigate();
 
     useEffect (() => {
-        axios.get(`http://localhost:8080/curso/${cursoId}`).then((res) => 
+        api.get(`/curso/${cursoId}`).then((res) => 
             {
                 const curso = res.data;
                 setNombreCurso(curso.nombre);
@@ -29,7 +30,7 @@ function EditarCursos(){
             activo
         }
 
-        axios.put(`http://localhost:8080/curso/${cursoId}`, curso).then(() => {console.log("Curso actualizado"); navegar(`/cursos/${cursoId}`)}).catch((e) => console.log(e.data));
+        api.put(`/curso/${cursoId}`, curso).then(() => {console.log("Curso actualizado"); navegar(`/cursos/${cursoId}`)}).catch((e) => console.log(e.data));
         
     };
 
