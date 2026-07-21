@@ -19,6 +19,8 @@ import CursosBuscar from "./pages/CursosBuscar";
 import CrearCursos from "./pages/CrearCursos"; 
 import EditarCursos from './pages/EditarCursos';
 import ProtectedRoute from './components/ProtectedRoute';
+import FormularioUsuario from './components/FormularioUsuario';
+
 function App() {
   return (
     <>
