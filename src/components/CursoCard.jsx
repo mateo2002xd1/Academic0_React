@@ -20,17 +20,31 @@ function CursoCard(props){
             {props.desc}
         </p>
         
-        {props.mostrarBotonDescripcion && (
-            <Link to={`/cursos/${props.id}`}>
-                Ver detalle
-            </Link>
-        )}
+        <>
+            {props.mostrarBotonInscripcion && (
+                <>
+                    <button onClick={() => props.inscribirCurso(props.id)}>
+                        Inscripción
+                    </button>
+                    {"  "}
+                </>
+            )}
 
-        {props.mostrarEditarCurso && (
-            <Link to={`/cursos/editar/${props.id}`}>
-                Editar curso
-            </Link>
-        )}
+            {props.mostrarBotonDescripcion && (
+                <>
+                    <Link to={`/cursos/${props.id}`}>
+                        Ver detalle
+                    </Link>
+                    {"  "}
+                </>
+            )}
+
+            {props.mostrarEditarCurso && (
+                <Link to={`/cursos/editar/${props.id}`}>
+                    Editar curso
+                </Link>
+            )}
+        </>
     </div>);
 }
 

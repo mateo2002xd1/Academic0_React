@@ -20,7 +20,7 @@ import CrearCursos from "./pages/CrearCursos";
 import EditarCursos from './pages/EditarCursos';
 import ProtectedRoute from './components/ProtectedRoute';
 import FormularioUsuario from './components/FormularioUsuario';
-
+import ListadoInscripciones from './pages/ListadoInscripciones';
 function App() {
   return (
     <>
@@ -37,6 +37,8 @@ function App() {
               
               <Route path='/login' element={<Login />}></Route>
               <Route path='/usuarios' element={<ProtectedRoute><Usuarios /></ProtectedRoute>}></Route>
+
+              <Route path='/inscripciones' element={<ProtectedRoute><ListadoInscripciones /></ProtectedRoute>}></Route>
             </Routes>
         </BrowserRouter>
       </div>

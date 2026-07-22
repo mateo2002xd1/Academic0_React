@@ -10,16 +10,41 @@ function CursosBuscar(){
     const { cursoId } = useParams();
     const [curso, setCurso] = useState(null);
     const { rol } = useContext(AuthContext);
+    const [ inscripcion, setInscripcion ] = useState([]);
+    
+    const inscribirCurso = (cursoId) => {
+    const datosInscripcion = { cursoId };
+
+        api.post("/inscripcion", datosInscripcion)
+            .then(() => {
+                console.log("Inscripción realizada");
+                cargarInscripciones();
+            })
+            .catch((e) => console.log(e));
+    };
 
     useEffect(() => {api.get(`/curso/${cursoId}`).then((res) => setCurso(res.data)).catch((e) => console.log(e.data))}, [cursoId]);
     
+    useEffect(() => {api.get(`/inscripcion`).then((res) => setInscripcion(res.data)).catch((e) => console.log(e.data))}, [cursoId]);
+
+    useEffect(() => {cargarInscripciones();}, [cursoId]);
+
+    const cargarInscripciones = () => {
+            api.get("/inscripcion")
+            .then((res) => setInscripcion(res.data))
+            .catch((e) => console.log(e));
+    };
+
+    const mostrarInscripcion = inscripcion.some(i => i.cursoId === Number(cursoId));
+
     return (
         <main className="contenido">
             <h1>
                 Buscar curso: {cursoId}
             </h1>
 
-            {curso && (
+            {
+            curso && (
                 <CursoCard
                     key={curso.id}
                     id={curso.id}
@@ -28,6 +53,8 @@ function CursosBuscar(){
                     activo={curso.activo}
                     fechacreacion={curso.fechacreacion}
                     mostrarEditarCurso={rol == "ROLE_ADMIN" && true}
+                    mostrarBotonInscripcion={!mostrarInscripcion}
+                    inscribirCurso={inscribirCurso}
                 />
             )}
         </main>

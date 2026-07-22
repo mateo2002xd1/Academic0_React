@@ -22,6 +22,13 @@ function Sidebar(){
                 </>
             )}
 
+            {rol === "ROLE_USER" && (
+                <>
+                    <Link to="/inscripciones">Mis inscripciones</Link>
+                    {" | "}
+                </>
+            )}
+
             <Link to="/login">Login</Link>
         </aside>
     );
