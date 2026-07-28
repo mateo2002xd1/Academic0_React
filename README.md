@@ -1,16 +1,144 @@
-# React + Vite
+# 🎨 Academic0 - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Descripción
 
-Currently, two official plugins are available:
+Academic0 Frontend es una aplicación SPA desarrollada con React que consume la API REST de Academic0.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Permite administrar usuarios, cursos e inscripciones mediante una interfaz moderna y dinámica, implementando autenticación con JWT, autorización por roles y consumo de servicios REST.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🧰 Tecnologías utilizadas
 
-## Expanding the ESLint configuration
+- React
+- React Router DOM
+- Axios
+- Context API
+- JavaScript
+- HTML5
+- CSS3
+- Vite
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🏗 Arquitectura
+
+El proyecto está organizado por funcionalidades:
+
+- components → Componentes reutilizables
+- pages → Vistas principales
+- context → Manejo del estado global
+- services → Consumo de la API
+- assets → Recursos estáticos
+
+Flujo general:
+
+Usuario → React → Axios → API Spring Boot → PostgreSQL
+
+---
+
+## ⚙️ Instalación
+
+Clonar el repositorio
+
+```bash
+git clone https://github.com/usuario/Academic0-Frontend.git
+```
+
+Entrar al proyecto
+
+```bash
+cd Academic0-Frontend
+```
+
+Instalar dependencias
+
+```bash
+npm install
+```
+
+---
+
+## ▶️ Ejecutar
+
+```bash
+npm run dev
+```
+
+La aplicación estará disponible en:
+
+```
+http://localhost:5173
+```
+
+---
+
+## ⚙️ Configuración
+
+La URL del backend se encuentra en:
+
+```
+src/service/api.js
+```
+
+Ejemplo:
+
+```javascript
+const api = axios.create({
+    baseURL: "http://localhost:8080"
+});
+```
+
+---
+
+## 🔐 Autenticación
+
+La aplicación utiliza JWT.
+
+Después del inicio de sesión:
+
+- El Access Token se almacena en LocalStorage.
+- Axios agrega automáticamente el token en cada petición.
+- Cuando el Access Token expira, se utiliza el Refresh Token para obtener uno nuevo sin necesidad de volver a iniciar sesión.
+
+---
+
+## 📋 Funcionalidades
+
+### Autenticación
+
+- Inicio de sesión
+- Registro
+- Renovación automática del token
+
+### Usuarios
+
+- Listado
+- Creación
+- Edición
+- Eliminación
+
+### Cursos
+
+- Listado paginado
+- Consulta por id
+- Creación
+- Edición
+- Eliminación
+
+### Inscripciones
+
+- Inscripción a cursos
+- Consulta de cursos inscritos
+
+### Seguridad
+
+- Protección de rutas
+- Menús según el rol del usuario
+- Control de permisos para administradores y usuarios
+
+---
+
+## 👨‍💻 Autor
+
+Proyecto frontend desarrollado con React, React Router, Context API y Axios, consumiendo la API REST Academic0 desarrollada en Spring Boot.
