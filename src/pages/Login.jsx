@@ -36,6 +36,7 @@ function Login(){
                 setToken(res.data.token);
                 setRefreshToken(res.data.refreshToken);
                 setRol(rol);
+                navegar("/");
             }).catch((e) => alert("Correo o contraseña incorrectos"));
             
     } 

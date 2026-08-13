@@ -9,7 +9,6 @@ import './App.css';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Sidebar  from './components/Sidebar';
 
 import Home from "./pages/Home";
 import Cursos from "./pages/Cursos";
@@ -18,32 +17,37 @@ import Usuarios from "./pages/Usuarios";
 import CursosBuscar from "./pages/CursosBuscar"; 
 import CrearCursos from "./pages/CrearCursos"; 
 import EditarCursos from './pages/EditarCursos';
-import ProtectedRoute from './components/ProtectedRoute';
 import FormularioUsuario from './components/FormularioUsuario';
 import ListadoInscripciones from './pages/ListadoInscripciones';
+import ProtectedLayout from './components/ProtectedLayout';
+
 function App() {
   return (
-    <>
-      <Navbar/>
-      <div className="layout">
-        <BrowserRouter>
-            <Sidebar/>
-            <Routes>
-              <Route path='/' element={<Home />}></Route>
-              <Route path='/cursos' element={<ProtectedRoute><Cursos /></ProtectedRoute>}></Route>
-              <Route path='/cursos/:cursoId' element={<ProtectedRoute><CursosBuscar /></ProtectedRoute>}></Route>
-              <Route path='cursos/nuevo' element={<ProtectedRoute><CrearCursos /></ProtectedRoute>}></Route>
-              <Route path='cursos/editar/:cursoId' element={<ProtectedRoute><EditarCursos /></ProtectedRoute>}></Route>
-              
-              <Route path='/login' element={<Login />}></Route>
-              <Route path='/usuarios' element={<ProtectedRoute><Usuarios /></ProtectedRoute>}></Route>
+    <BrowserRouter>
+      <Navbar />
 
-              <Route path='/inscripciones' element={<ProtectedRoute><ListadoInscripciones /></ProtectedRoute>}></Route>
-            </Routes>
-        </BrowserRouter>
-      </div>
-      <Footer/>
-    </>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        
+        <Route
+          element={
+            <ProtectedLayout />
+          }
+        >
+          <Route path="/" element={<Home />} />
+          <Route path="/cursos" element={<Cursos />} />
+          <Route path="/cursos/:cursoId" element={<CursosBuscar />} />
+          <Route path="/cursos/nuevo" element={<CrearCursos />} />
+          <Route path="/cursos/editar/:cursoId" element={<EditarCursos />} />
+          <Route path="/usuarios" element={<Usuarios />} />
+          <Route path="/inscripciones" element={<ListadoInscripciones />} />
+        </Route>
+
+      </Routes>
+      
+      <Footer />
+
+    </BrowserRouter>
   );
 }
 

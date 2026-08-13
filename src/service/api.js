@@ -34,7 +34,7 @@ api.interceptors.response.use(
                 return api(error.config);
 
             } catch (e) {
-
+                localStorage.clear();
                 return Promise.reject(e);
             }
         }

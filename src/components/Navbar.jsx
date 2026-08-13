@@ -3,11 +3,13 @@ import { useContext } from "react";
 
 function Navbar(){
     
-    return (<nav>
-        <h2 className="navbar">
-            Sistema de Cursos
-        </h2>
-    </nav>);
+    return (
+        <nav>
+            <h2 className="navbar text-3xl font-bold">
+                Sistema de Cursos
+            </h2>
+        </nav>
+    );
 }
 
 export default Navbar;
