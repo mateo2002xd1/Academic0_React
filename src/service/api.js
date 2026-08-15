@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create(
     {
-        baseURL: "http://localhost:8080"
+        baseURL: import.meta.env.VITE_API_URL
     }
 );
 
@@ -26,7 +26,7 @@ api.interceptors.response.use(
             try {
 
                 const res = await axios.post(
-                    "http://localhost:8080/auth/refresh",
+                    import.meta.env.VITE_API_URL + "/auth/refresh",
                     refreshToken
                 );
 
