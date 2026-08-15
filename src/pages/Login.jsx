@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import api from "../service/api";
 
 function Login(){
     const [correo, setCorreo] = useState(""); 
