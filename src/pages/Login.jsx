@@ -24,20 +24,22 @@ function Login(){
             password
         }
 
-        axios.post(`http://localhost:8080/auth/login`, usuario).then((res) => 
-            {  
-                localStorage.setItem("accessToken", res.data.token);
-                localStorage.setItem("refreshToken", res.data.refreshToken);
+        api.post("/auth/login", usuario)
+        .then((res) => {
+            localStorage.setItem("accessToken", res.data.token);
+            localStorage.setItem("refreshToken", res.data.refreshToken);
 
-                const rol = jwtDecode(res.data.token).rol;
+            const rol = jwtDecode(res.data.token).rol;
 
-                localStorage.setItem("rol", rol);
+            localStorage.setItem("rol", rol);
 
-                setToken(res.data.token);
-                setRefreshToken(res.data.refreshToken);
-                setRol(rol);
-                navegar("/");
-            }).catch((e) => alert("Correo o contraseña incorrectos"));
+            setToken(res.data.token);
+            setRefreshToken(res.data.refreshToken);
+            setRol(rol);
+
+            navegar("/");
+        })
+        .catch((e) => alert("Correo o contraseña incorrectos"));
             
     } 
     
